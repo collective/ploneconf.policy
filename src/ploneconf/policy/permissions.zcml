@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="ploneconf.policy.AddPerson"
+        title="ploneconf.policy: Add Person"
+    />
+
+        
 
   </configure>
 
