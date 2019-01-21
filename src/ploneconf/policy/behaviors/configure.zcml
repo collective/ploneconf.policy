@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+    <include package="plone.behavior" file="meta.zcml" />
+
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+            zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".event.update_related_behavior"
+        />
+    <plone:behavior
+        title="Related people"
+        description="Adds the ability to assign related people"
+        provides=".related_people.IRelatedPeople"
+        />
+    <plone:behavior
+        title="Name from talk"
+        description="Adds the ability to assign an id from a related talk"
+        provides=".name_from_talk.INameFromTalk"
+        />
+
+    <adapter factory=".name_from_talk.NameFromTalk" />
+</configure>

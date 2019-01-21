@@ -10,9 +10,22 @@
         id="ploneconf.policy.AddPerson"
         title="ploneconf.policy: Add Person"
     />
-
-        
-
+    <permission
+        id="ploneconf.policy.AddTalk"
+        title="ploneconf.policy: Add Talk"
+    />
+    <permission
+        id="ploneconf.policy.AddTraining"
+        title="ploneconf.policy: Add Training"
+    />
+    <permission
+        id="ploneconf.policy.AddTimeSlot"
+        title="ploneconf.policy: Add Time Slot"
+    />        
+    <permission
+        id="ploneconf.policy.AddScheduledTalk"
+        title="ploneconf.policy: Add Scheduled Talk"
+    />        
   </configure>
 
 </configure>

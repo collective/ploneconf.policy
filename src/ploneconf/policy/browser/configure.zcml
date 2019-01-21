@@ -17,5 +17,13 @@
       type="plone"
       directory="static"
       />
-
+  
+  <!-- view for control panel -->
+  <browser:page
+      for="Products.CMFCore.interfaces.ISiteRoot"
+      name="ploneconf-controlpanel"
+      permission="cmf.ManagePortal"
+      class=".controlpanel.PloneconfControlpanel"
+      layer="ploneconf.policy.interfaces.IPloneconfPolicyLayer"
+      />
 </configure>

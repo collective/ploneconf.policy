@@ -1,52 +1,46 @@
 <?xml version="1.0"?>
 <object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    name="Person"
+    name="Training"
     meta_type="Dexterity FTI"
     i18n:domain="ploneconf.policy">
 
   <!-- Basic properties -->
   <property
       i18n:translate=""
-      name="title">Person</property>
+      name="title">Training</property>
   <property
       i18n:translate=""
-      name="description">A trainer or speaker</property>
+      name="description">A training</property>
 
   <property name="allow_discussion">False</property>
-  <property name="factory">Person</property>
+  <property name="factory">Training</property>
   <property name="icon_expr"></property>
   <property name="link_target"></property>
 
   <!-- Hierarchy control -->
   <property name="global_allow">True</property>
   <!-- Schema, class and security -->
-  <property name="add_permission">ploneconf.policy.AddPerson</property>
-  <property name="klass">ploneconf.policy.content.person.Person</property>
+  <property name="add_permission">ploneconf.policy.AddTraining</property>
+  <property name="klass">ploneconf.policy.content.training.Training</property>
   <property name="model_file"></property>
   <property name="model_source"></property>
-  <property name="schema">ploneconf.policy.content.person.IPerson</property>
+  <property name="schema">ploneconf.policy.content.training.ITraining</property>
 
   <!-- Enabled behaviors -->
   <property name="behaviors" purge="false">
     <element value="plone.app.content.interfaces.INameFromTitle"/>
-    <!-- <element value="plone.app.dexterity.behaviors.discussion.IAllowDiscussion"/> -->
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
     <element value="plone.app.dexterity.behaviors.id.IShortName"/>
-    <!-- <element value="plone.app.dexterity.behaviors.metadata.IOwnership"/> -->
     <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
-    <!-- <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/> -->
-    <!-- <element value="plone.app.dexterity.behaviors.metadata.IBasic"/> -->
+    <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
     <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
-    <element value="plone.app.contenttypes.behaviors.leadimage.ILeadImageBehavior"/>
-    <!--<element value="plone.app.relationfield.behavior.IRelatedItems"/>-->
-    <!--<element value="plone.app.versioningbehavior.behaviors.IVersionable" />-->
-    <!--<element value="plone.app.contenttypes.behaviors.tableofcontents.ITableOfContents"/>-->
-    <!--<element value="plone.app.contenttypes.behaviors.richtext.IRichText"/>-->
+    <element value="plone.app.contenttypes.behaviors.richtext.IRichTextBehavior"/>
+    <element value="ploneconf.policy.behaviors.related_people.IRelatedPeople"/>
   </property>
 
   <!-- View information -->
-  <property name="add_view_expr">string:${folder_url}/++add++Person</property>
+  <property name="add_view_expr">string:${folder_url}/++add++Training</property>
   <property name="default_view">view</property>
   <property name="default_view_fallback">False</property>
   <property name="immediate_view">view</property>

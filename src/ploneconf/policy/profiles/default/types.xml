@@ -3,4 +3,8 @@
   <property name="title">Controls the available contenttypes in your portal</property>
   <!--<object name="example_ct" meta_type="Dexterity FTI"/>-->
   <object meta_type="Dexterity FTI" name="Person"/>
+  <object meta_type="Dexterity FTI" name="ScheduledTalk"/>
+  <object meta_type="Dexterity FTI" name="Talk"/>
+  <object meta_type="Dexterity FTI" name="Training"/>
+  <object meta_type="Dexterity FTI" name="TimeSlot"/>
 </object>

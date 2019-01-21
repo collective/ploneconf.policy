@@ -3,36 +3,21 @@
    This text does not appear on pypi or github. It is a comment.
 
 ================
-ploneconf.policy
+Ploneconf policy
 ================
 
-Tell me what your product does
+A policy package for Ploneconf site
 
 Features
 --------
 
-- Can be bullet points
+Custom content-types:
 
-
-Examples
---------
-
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
-
-
-Documentation
--------------
-
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
-
-
-Translations
-------------
-
-This product has been translated into
-
-- Klingon (thanks, K'Plai)
+- Person (a trainer or speaker)
+- Talk
+- Training
+- Time Slot
+- Scheduled Talk
 
 
 Installation
@@ -56,7 +41,6 @@ Contribute
 
 - Issue Tracker: https://github.com/collective/ploneconf.policy/issues
 - Source Code: https://github.com/collective/ploneconf.policy
-- Documentation: https://docs.plone.org/foo/bar
 
 
 Support
