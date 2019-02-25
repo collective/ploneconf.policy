@@ -49,6 +49,8 @@ setup(
         'Products.GenericSetup>=1.8.2',
         'setuptools',
         'z3c.jbot',
+        'plone.restapi',
+        'python-datauri',
     ],
     extras_require={
         'test': [

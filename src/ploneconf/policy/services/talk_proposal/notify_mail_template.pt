@@ -1,0 +1,24 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="plone"
+     tal:omit-tag=""
+     tal:define="charset python:context.portal_registry.get('email_charset', 'utf-8');
+                 dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)">
+    <div tal:omit-tag="">
+        New talk proposal:
+        <tal:values tal:repeat="field python:options.get('data').items()">
+            <tal:field condition="python: field[0] != 'image'"
+                       define="name python:field[0];
+                               value python:field[1]">
+                - ${name}: ${value}
+            </tal:field>
+        </tal:values>
+
+        Talk object is here: ${options/talk/absolute_url}.
+
+        Speaker object is here: ${options/speaker/absolute_url}.
+    </div>
+
+</div>

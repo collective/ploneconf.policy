@@ -14,6 +14,13 @@ class ITalk(model.Schema):
     """ Marker interface and Dexterity Python Schema for Talk
     """
 
+    title = schema.TextLine(
+        title=_('Title of talk'), description=u'', required=True
+    )
+    description = schema.Text(
+        title=_('Description of talk'), description=u'', required=True
+    )
+
     duration = schema.Choice(
         title=_('Duration'),
         description=u'',

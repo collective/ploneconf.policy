@@ -26,4 +26,11 @@
       class=".controlpanel.PloneconfControlpanel"
       layer="ploneconf.policy.interfaces.IPloneconfPolicyLayer"
       />
+   <browser:page
+      for="*"
+      name="debug"
+      permission="cmf.ManagePortal"
+      class=".debug.View"
+      layer="ploneconf.policy.interfaces.IPloneconfPolicyLayer"
+      />
 </configure>
