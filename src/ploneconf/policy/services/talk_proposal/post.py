@@ -30,6 +30,26 @@ class TalkProposalPost(Service):
     """Creates a new talk proposal.
     """
 
+    def talks_container(self):
+        res = api.content.find(
+            path='/{0}/proposals'.format(api.portal.get().getId()),
+            id='talks',
+            portal_type='Folder',
+        )
+        if not res:
+            return None
+        return res[0].getObject()
+
+    def speakers_container(self):
+        res = api.content.find(
+            path='/{0}/proposals'.format(api.portal.get().getId()),
+            id='speakers',
+            portal_type='Folder',
+        )
+        if not res:
+            return None
+        return res[0].getObject()
+
     def reply(self):
         data = json_body(self.request)
         # Disable CSRF protection
@@ -37,25 +57,25 @@ class TalkProposalPost(Service):
             alsoProvides(
                 self.request, plone.protect.interfaces.IDisableCSRFProtection
             )
-        speaker = self.create_speaker(data)
-        if isinstance(speaker, dict):
-            # error occurred
-            return speaker
-        talk = self.create_talk(data=data, speaker=speaker)
-        if isinstance(talk, dict):
-            # error occurred
-            return talk
-        self.send_mail(data=data, speaker=speaker, talk=talk)
-        self.request.response.setStatus(204)
+            speaker = self.get_or_create_speaker(data)
+            if isinstance(speaker, dict):
+                # error occurred
+                return speaker
+            talk = self.create_talk(data=data, speaker=speaker)
+            if isinstance(talk, dict):
+                # error occurred
+                return talk
+            self.send_mail(data=data, speaker=speaker, talk=talk)
+            self.request.response.setStatus(204)
 
     def create_talk(self, data, speaker):
-        if 'talks' not in self.context.keys():
+        container = self.talks_container()
+        if not container:
             raise Exception(
                 'Unable to create a talk proposal. '
                 'Folder "talks" not available.'
             )
         title = data.get('title', None)
-        container = self.context['talks']
         talk = self.create_obj(
             data=data, type_='Talk', title=title, container=container
         )
@@ -63,6 +83,8 @@ class TalkProposalPost(Service):
         for k, v in data.items():
             if k in talk_fields.keys():
                 setattr(talk, k, v)
+
+        # add speaker/talk relation
         intids = getUtility(IIntIds)
         to_id = intids.getId(speaker)
         talk.related_people = [RelationValue(to_id)]
@@ -70,20 +92,43 @@ class TalkProposalPost(Service):
         talk = add(container, talk, rename=False)
         return talk
 
-    def create_speaker(self, data):
-        if 'people' not in self.context.keys():
+    def get_or_create_speaker(self, data):
+        """
+        Returns already created speaker or newly created speaker
+        """
+        container = self.speakers_container()
+        if not container:
             raise Exception(
                 'Unable to create a talk proposal. '
-                'Folder "people" not available.'
+                'Folder "speakers" not available.'
             )
         title = data.get('name', None)
-        container = self.context['people']
+
+        pc = api.portal.get_tool(name='portal_catalog')
+        speakers = pc.unrestrictedSearchResults(
+            portal_type='Person',
+            path='/'.join(container.getPhysicalPath()),
+            title=title,
+        )
+        if speakers:
+            speaker = speakers[0]._unrestrictedGetObject()
+            # self.update_speaker_fields(speaker=speaker, data=data)
+            # notify(ObjectModifiedEvent(speaker))
+            return speaker
+
         speaker = self.create_obj(
             data=data, type_='Person', title=title, container=container
         )
         if isinstance(speaker, dict):
             # error occurred
             return speaker
+
+        self.update_speaker_fields(speaker=speaker, data=data)
+        notify(ObjectCreatedEvent(speaker))
+        speaker = add(container, speaker, rename=False)
+        return speaker
+
+    def update_speaker_fields(self, speaker, data):
         speaker_fields = getFields(IPerson)
         for k, v in data.items():
             if k == 'title':
@@ -95,9 +140,6 @@ class TalkProposalPost(Service):
         image = self.get_speaker_image(data)
         if image:
             speaker.image = image
-        notify(ObjectCreatedEvent(speaker))
-        speaker = add(container, speaker, rename=False)
-        return speaker
 
     def get_speaker_image(self, data):
         image_b64 = data.get('image', None)

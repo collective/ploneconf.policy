@@ -29,7 +29,7 @@ class ITalk(model.Schema):
     )
 
     level = schema.Choice(
-        title=_('Duration'), description=u'', required=True, source=LEVEL_TYPES
+        title=_('Level'), description=u'', required=True, source=LEVEL_TYPES
     )
     audience = schema.Set(
         title=_('Audience'),

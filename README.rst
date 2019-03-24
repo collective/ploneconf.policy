@@ -19,6 +19,25 @@ Custom content-types:
 - Time Slot
 - Scheduled Talk
 
+Submit proposal
+---------------
+
+There are two plone.restapi endpoints to allow users submit their talk proposals:
+
+- @talk-proposal: an endpoint that returns a list of fields for submitting proposal form.
+- @submit-proposal: an endpoint (that accept only POST) that creates a Talk and Person object with form data.
+
+This form only works if there are the following folders:
+
+- /site-id/proposals
+- /site-id/proposals/talks
+- /site-id/proposals/speakers
+
+To allow anonymous users to create contents in this folder, you also need to:
+
+- Publish these folders
+- Set "ploneconf.policy: Add Person" and "ploneconf.policy: Add Talk" to "/site-id/proposals" folder from "manage_access" view.
+
 
 Installation
 ------------
