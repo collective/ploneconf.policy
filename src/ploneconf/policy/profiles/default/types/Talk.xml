@@ -35,7 +35,6 @@
     <!-- <element value="plone.app.dexterity.behaviors.metadata.IBasic"/> -->
     <!-- <element value="plone.app.contenttypes.behaviors.richtext.IRichTextBehavior"/> -->
     <element value="plone.app.dexterity.behaviors.metadata.ICategorization"/>
-    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
     <element value="ploneconf.policy.behaviors.related_people.IRelatedPeople"/>
   </property>
