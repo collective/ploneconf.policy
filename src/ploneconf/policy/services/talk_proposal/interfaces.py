@@ -15,7 +15,9 @@ class ITalkProposalSchema(ITalk):
     """
     """
 
-    name = schema.TextLine(title=_('Your name'), description=u'', required=True)
+    name = schema.TextLine(
+        title=_('Your name'), description=u'', required=True
+    )
     email = Email(
         title=_('Email'), description=_(u'Insert your email.'), required=False
     )
@@ -43,5 +45,7 @@ class ITalkProposalSchema(ITalk):
     directives.mode(slides_url='hidden')
     directives.mode(slides_embed='hidden')
     directives.mode(video_embed='hidden')
-    directives.mode(schedule_url='hidden')
+    directives.mode(room='hidden')
+    directives.mode(start='hidden')
+    directives.mode(end='hidden')
 
