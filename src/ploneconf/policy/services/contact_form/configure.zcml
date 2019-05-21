@@ -6,17 +6,10 @@
     method="GET"
     accept="application/json,application/schema+json"
     for="*"
-    factory=".get.TalkProposalGet"
-    name="@talk-proposal"
-    permission="zope2.View"
-    />
-  
-  <plone:service
-    method="POST"
-    for="*"
-    name="@talk-proposal"
-    factory=".post.TalkProposalPost"
+    factory=".get.ContactFormGet"
+    name="@contact-form"
     permission="zope2.View"
     />
 
+  
 </configure>
