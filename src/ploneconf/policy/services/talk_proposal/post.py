@@ -108,7 +108,7 @@ class TalkProposalPost(Service):
         speakers = pc.unrestrictedSearchResults(
             portal_type='Person',
             path='/'.join(container.getPhysicalPath()),
-            title=title,
+            Title=title,
         )
         if speakers:
             speaker = speakers[0]._unrestrictedGetObject()
@@ -175,7 +175,8 @@ class TalkProposalPost(Service):
         email_charset = mail_settings.email_charset
         site = api.portal.get()
         host = getUtility(IMailHost)
-
+        if not from_address:
+            return
         # Cook from template
         message = mail_template(
             self,
