@@ -10,8 +10,8 @@ from zope.schema.vocabulary import SimpleVocabulary
 
 PRESENTATION_DURATION_TYPES = SimpleVocabulary(
     [
-        SimpleTerm(value=u'LongTalk', title=u'Long Talk'),
-        SimpleTerm(value=u'ShortTalk', title=u'Short Talk'),
+        SimpleTerm(value=u'short', title=u'Short Talk'),
+        SimpleTerm(value=u'long', title=u'Long Talk'),
     ]
 )
 
@@ -19,40 +19,49 @@ TRAINING_CLASS_DURATION_TYPES = SimpleVocabulary(
     [
         SimpleTerm(value=u'HalfDay', title=u'1/2 day'),
         SimpleTerm(value=u'OneDay', title=u'1 day'),
-        SimpleTerm(value=u'TwoDay', title=u'2 day'),
+        SimpleTerm(value=u'TwoDay', title=u'2 days'),
+    ]
+)
+
+TRAINING_CLASS_ROOMS = SimpleVocabulary(
+    [
+        SimpleTerm(value=u'devs-den', title=u'Dev\'s den'),
+        SimpleTerm(value=u'pistachio', title=u'Pistachio room'),
+        SimpleTerm(value=u'relax', title=u'Relax room'),
+        SimpleTerm(value=u'ten_absents', title=u'10 absents room'),
     ]
 )
 
 LEVEL_TYPES = SimpleVocabulary(
     [
-        SimpleTerm(value=u'Beginner', title=u'Beginner'),
-        SimpleTerm(value=u'Intermediate', title=u'Intermediate'),
-        SimpleTerm(value=u'Expert', title=u'Expert'),
+        SimpleTerm(value=u'beginner', title=u'Beginner'),
+        SimpleTerm(value=u'expert', title=u'Expert'),
+        SimpleTerm(value=u'intermediate', title=u'Intermediate'),
     ]
 )
 
 AUDIENCE_TYPES = SimpleVocabulary(
     [
-        SimpleTerm(value=u'User', title=u'User'),
-        SimpleTerm(value=u'Integrator', title=u'Integrator'),
-        SimpleTerm(value=u'Designer', title=u'Designer'),
-        SimpleTerm(value=u'Developer', title=u'Developer'),
+        SimpleTerm(value=u'designer', title=u'Designer'),
+        SimpleTerm(value=u'developer', title=u'Developer'),
+        SimpleTerm(value=u'integrator', title=u'Integrator'),
+        SimpleTerm(value=u'user', title=u'User'),
     ]
 )
 
 TALK_TOPICS = SimpleVocabulary(
     [
-        SimpleTerm(value=u'Plone', title=u'Plone'),
-        SimpleTerm(value=u'Pyramid', title=u'Pyramid'),
-        SimpleTerm(value=u'Guillotina', title=u'Guillotina'),
-        SimpleTerm(value=u'Volto', title=u'Volto'),
+        SimpleTerm(value=u'plone', title=u'Plone'),
+        SimpleTerm(value=u'pyramid', title=u'Pyramid'),
+        SimpleTerm(value=u'guillotina', title=u'Guillotina'),
+        SimpleTerm(value=u'volto', title=u'Volto'),
         SimpleTerm(value=u'use-case', title=u'Use case'),
-        SimpleTerm(value=u'Python', title=u'Python'),
-        SimpleTerm(value=u'Frontend', title=u'Frontend'),
-        SimpleTerm(value=u'Javascript', title=u'Javascript'),
-        SimpleTerm(value=u'Design', title=u'Design'),
+        SimpleTerm(value=u'python', title=u'Python'),
+        SimpleTerm(value=u'frontend', title=u'Frontend'),
+        SimpleTerm(value=u'javascript', title=u'Javascript'),
+        SimpleTerm(value=u'design', title=u'Design'),
         SimpleTerm(value=u'db', title=u'Database'),
-        SimpleTerm(value=u'Mobile', title=u'Mobile'),
+        SimpleTerm(value=u'mobile', title=u'Mobile'),
     ]
 )
 
