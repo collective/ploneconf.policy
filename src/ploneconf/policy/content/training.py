@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+from plone.app.event.base import default_timezone
 from plone.app.textfield import RichText as RichTextField
+from plone.app.z3cform.widget import DatetimeFieldWidget
 from plone.app.z3cform.widget import RichTextFieldWidget
 from plone.autoform import directives
 from plone.dexterity.content import Item
@@ -38,6 +40,21 @@ class ITraining(model.Schema):
         description=u'',
         required=True,
         source=TRAINING_CLASS_ROOMS,
+    )
+    start = schema.Datetime(title=u'Start', required=False)
+    directives.widget(
+        'start',
+        DatetimeFieldWidget,
+        default_timezone=default_timezone,
+        klass=u'event_start',
+    )
+
+    end = schema.Datetime(title=u'End', required=False)
+    directives.widget(
+        'end',
+        DatetimeFieldWidget,
+        default_timezone=default_timezone,
+        klass=u'event_end',
     )
     docs_link = schema.TextLine(
         title=_('Documentation link'),
