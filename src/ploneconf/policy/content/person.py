@@ -23,7 +23,11 @@ class IPerson(model.Schema):
     # bio = RichTextField(title=_(u'Bio'), description=u'', required=False)
     # directives.widget('bio', RichTextFieldWidget)
     title = schema.TextLine(title=_('Name'), description=u'', required=True)
-    bio = schema.Text(title=_('Bio'), description=u'', required=True)
+    bio = schema.Text(
+        title=_('Bio'),
+        description=u'Tell us some informations about you.',
+        required=True,
+    )
 
     twitter = schema.TextLine(
         title=_('Twitter account'),
