@@ -27,15 +27,13 @@
   <property name="schema">ploneconf.policy.content.training.ITraining</property>
 
   <!-- Enabled behaviors -->
-  <property name="behaviors" purge="false">
+  <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle"/>
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
     <element value="plone.app.dexterity.behaviors.id.IShortName"/>
     <element value="plone.app.dexterity.behaviors.metadata.IPublication"/>
     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
-    <element value="plone.app.referenceablebehavior.referenceable.IReferenceable" />
     <element value="plone.app.lockingbehavior.behaviors.ILocking" />
-    <element value="plone.app.contenttypes.behaviors.richtext.IRichTextBehavior"/>
     <element value="ploneconf.policy.behaviors.related_people.IRelatedPeople"/>
   </property>
 
