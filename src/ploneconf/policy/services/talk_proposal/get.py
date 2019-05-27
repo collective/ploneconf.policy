@@ -35,7 +35,10 @@ class TalkProposalGet(Service):
             "format": "data-url",
             "title": _("Image"),
         }
-        schema_fieldsets[0]['fields'].append('image')
+        # add image before privacy
+        schema_fieldsets[0]['fields'].insert(
+            len(schema_fieldsets[0]['fields']) - 1, 'image'
+        )
         # Determine required fields
         required = []
         for field in utils.iter_fields(fieldsets):

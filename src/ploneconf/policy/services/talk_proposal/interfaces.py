@@ -36,11 +36,13 @@ class ITalkProposalSchema(ITalk):
         required=False,
     )
 
-    # image = namedfile.NamedBlobImage(
-    #     title=_(u'label_leadimage', default=u'Lead Image'),
-    #     description=u'',
-    #     required=False,
-    # )
+    privacy = schema.Bool(
+        title=_(u'label_privacy', default=u'Terms and conditions'),
+        description=u'We want you to know exactly how our service works and '
+        u'why we need your registration details. Please state that you have '
+        u'read and agreed to these terms before you continue.',
+        required=True,
+    )
 
     directives.mode(slides_url='hidden')
     directives.mode(slides_embed='hidden')
@@ -48,4 +50,3 @@ class ITalkProposalSchema(ITalk):
     directives.mode(room='hidden')
     directives.mode(start='hidden')
     directives.mode(end='hidden')
-
