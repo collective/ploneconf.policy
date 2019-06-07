@@ -8,6 +8,7 @@ from ploneconf.policy.vocabularies import AUDIENCE_TYPES
 from ploneconf.policy.vocabularies import LEVEL_TYPES
 from ploneconf.policy.vocabularies import PRESENTATION_DURATION_TYPES
 from ploneconf.policy.vocabularies import TALK_TOPICS
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import implementer
 
@@ -46,19 +47,28 @@ class ITalk(model.Schema):
         required=True,
         source=LEVEL_TYPES,
     )
-    audience = schema.Set(
+    audience = schema.List(
         title=_('Audience'),
         description=u'What kind of people should be interested listening this'
         u' talk?',
         required=True,
         value_type=schema.Choice(source=AUDIENCE_TYPES),
     )
-    topic = schema.Set(
+    topic = schema.List(
         title=_('Topic'),
         description=u'Choose one or more topics related to your talk.'
         u'This will help us to create a better talks schedule.',
         required=True,
         value_type=schema.Choice(source=TALK_TOPICS),
+    )
+    directives.widget('topic', CheckBoxFieldWidget)
+
+    other_topics = schema.TextLine(
+        title=_('Other topics'),
+        description=_(
+            u'If you selected "Other", please insert your topics here.'
+        ),
+        required=False,
     )
     slides_url = schema.TextLine(
         title=_('Slides'), description=_(u'Url of slides.'), required=False
