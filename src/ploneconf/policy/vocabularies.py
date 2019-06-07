@@ -45,7 +45,7 @@ AUDIENCE_TYPES = SimpleVocabulary(
         SimpleTerm(value=u'Designer', title=u'Designer'),
         SimpleTerm(value=u'Developer', title=u'Developer'),
         SimpleTerm(value=u'Integrator', title=u'Integrator'),
-        SimpleTerm(value=u'Usser', title=u'User'),
+        SimpleTerm(value=u'User', title=u'User'),
     ]
 )
 
@@ -62,6 +62,7 @@ TALK_TOPICS = SimpleVocabulary(
         SimpleTerm(value=u'Design', title=u'Design'),
         SimpleTerm(value=u'Database', title=u'Database'),
         SimpleTerm(value=u'Mobile', title=u'Mobile'),
+        SimpleTerm(value=u'Other', title=u'Other'),
     ]
 )
 
