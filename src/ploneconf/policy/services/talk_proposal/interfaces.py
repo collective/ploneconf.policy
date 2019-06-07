@@ -18,11 +18,11 @@ class ITalkProposalSchema(ITalk):
     name = schema.TextLine(
         title=_('Your name'), description=u'', required=True
     )
-    email = Email(
-        title=_('Email'), description=_(u'Insert your email.'), required=False
+    email = schema.TextLine(
+        title=_('Email'), description=_(u'Insert your email.'), required=True
     )
 
-    bio = schema.Text(title=_('Bio'), description=u'', required=True)
+    bio = schema.Text(title=_('Bio'), description=u'', required=False)
 
     twitter = schema.TextLine(
         title=_('Twitter account'),
