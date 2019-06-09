@@ -45,6 +45,7 @@ AUDIENCE_TYPES = SimpleVocabulary(
         SimpleTerm(value=u'Designer', title=u'Designer'),
         SimpleTerm(value=u'Developer', title=u'Developer'),
         SimpleTerm(value=u'Integrator', title=u'Integrator'),
+        SimpleTerm(value=u'Operator', title=u'Operator'),
         SimpleTerm(value=u'User', title=u'User'),
     ]
 )
