@@ -34,6 +34,7 @@ class TalkProposalGet(Service):
             "type": "string",
             "format": "data-url",
             "title": _("Image"),
+            "description": _("Add your profile image here."),
         }
         # add image before privacy
         schema_fieldsets[0]['fields'].insert(

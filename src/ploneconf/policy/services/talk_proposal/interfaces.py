@@ -7,7 +7,6 @@ from zope.interface import Interface
 from ploneconf.policy.content.talk import ITalk
 from ploneconf.policy import _
 from plone.autoform import directives
-from plone.schema import Email
 from plone.namedfile import field as namedfile
 
 
