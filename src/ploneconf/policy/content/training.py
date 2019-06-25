@@ -59,7 +59,7 @@ class ITraining(model.Schema):
     docs_link = schema.TextLine(
         title=_('Documentation link'),
         description=u'Insert a link to an online documentation.',
-        required=True,
+        required=False,
     )
 
     what_learn = RichTextField(
