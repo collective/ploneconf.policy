@@ -23,35 +23,45 @@ class ContactFormGet(Service):
         self.content_type = "application/json+schema"
         return form
 
-    def get_jsonschema(self, schema):
-        fieldsets = utils.get_fieldsets(self.context, self.request, schema)
-        schema_fieldsets = utils.get_fieldset_infos(fieldsets)
-        # Build JSON schema properties
-        properties = utils.get_jsonschema_properties(
-            self.context, self.request, fieldsets
-        )
-
-        # Determine required fields
-        required = []
-        for field in utils.iter_fields(fieldsets):
-            if field.field.required:
-                required.append(field.field.getName())
-
-        # Include field modes
-        for field in utils.iter_fields(fieldsets):
-            if field.mode:
-                properties[field.field.getName()]['mode'] = field.mode
-
+    def get_jsonschema(self):
         return {
-            'type': 'object',
-            'properties': properties,
-            'required': required,
-            'fieldsets': schema_fieldsets,
+            "fieldsets": [
+                {
+                    "fields": ["name", "from", "subject", "message"],
+                    "id": "default",
+                    "title": "Default",
+                }
+            ],
+            "properties": {
+                "message": {
+                    "description": "Please enter the message you want to send.",
+                    "minLength": 0,
+                    "title": "Message",
+                    "type": "string",
+                    "widget": "textarea",
+                },
+                "from": {
+                    "description": "Please enter your e-mail address.",
+                    "title": "From",
+                    "type": "string",
+                },
+                "name": {
+                    "description": "Please enter your full name.",
+                    "title": "Name",
+                    "type": "string",
+                },
+                "subject": {
+                    "description": "",
+                    "title": "Subject",
+                    "type": "string",
+                },
+            },
+            "required": ["name", "from", "subject"],
+            "type": "object",
         }
 
     def serialize_form(self):
-        schema = IContactForm
-        json_schema = self.get_jsonschema(schema=schema)
+        json_schema = self.get_jsonschema()
         json_data = {}
 
         # JSON schema
