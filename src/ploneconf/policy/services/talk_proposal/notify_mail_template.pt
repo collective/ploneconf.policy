@@ -6,19 +6,22 @@
      tal:omit-tag=""
      tal:define="charset python:context.portal_registry.get('email_charset', 'utf-8');
                  dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)">
-    <div tal:omit-tag="">
+    <div>
         New talk proposal:
-        <tal:values tal:repeat="field python:options.get('data').items()">
-            <tal:field condition="python: field[0] != 'image'"
-                       define="name python:field[0];
-                               value python:field[1]">
-                - ${name}: ${value}
-            </tal:field>
-        </tal:values>
+        <ul>
+            <tal:values tal:repeat="field python:options.get('data').items()">
+                <tal:field condition="python: field[0] not in ['image', 'captcha', 'privacy']"
+                        define="name python:field[0];
+                                    value python:field[1]">
+                        <li><strong>${name}:</strong><span>${value}</span></li>
+                </tal:field>
+            </tal:values>
+        </ul>
+        
 
-        Talk object is here: ${options/talk/absolute_url}.
+        <p>Talk object is here: <a href="${options/talk/absolute_url}">${options/talk/absolute_url}</a>.</p>
 
-        Speaker object is here: ${options/speaker/absolute_url}.
+        <p>Speaker object is here: <a href="${options/speaker/absolute_url} ">${options/speaker/absolute_url}    </a>.</p>
     </div>
 
 </div>

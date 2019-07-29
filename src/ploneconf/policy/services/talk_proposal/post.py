@@ -65,7 +65,7 @@ class TalkProposalPost(Service):
             if isinstance(talk, dict):
                 # error occurred
                 return talk
-            self.send_mail(data=data, speaker=speaker, talk=talk)
+            self.send_notifications(data=data, speaker=speaker, talk=talk)
             self.request.response.setStatus(204)
 
     def create_talk(self, data, speaker):
@@ -166,32 +166,39 @@ class TalkProposalPost(Service):
             return dict(error=dict(type='Bad Request', message=str(exc)))
         return obj
 
-    def send_mail(self, data, speaker, talk):
-        mail_template = ViewPageTemplateFile('notify_mail_template.pt')
+    def send_notifications(self, data, speaker, talk):
+        team_mail_template = ViewPageTemplateFile('notify_mail_template.pt')
+        proposer_mail_template = ViewPageTemplateFile(
+            'proposer_notify_mail_template.pt'
+        )
+        site = api.portal.get()
+        # Cook from template
+        self.send_mail(
+            message=team_mail_template(
+                self, data=data, speaker=speaker, talk=talk
+            ),
+            subject='{0} - New talk submission'.format(site.title),
+        )
+        self.send_mail(
+            message=proposer_mail_template(self),
+            subject='{0} - Talk submission received'.format(site.title),
+            to_address=getattr(speaker, 'email', ''),
+        )
 
+    def send_mail(self, message, subject, to_address=''):
         registry = getUtility(IRegistry)
         mail_settings = registry.forInterface(IMailSchema, prefix='plone')
         from_address = mail_settings.email_from_address
-        email_charset = mail_settings.email_charset
-        site = api.portal.get()
-        host = getUtility(IMailHost)
         if not from_address:
             return
-        # Cook from template
-        message = mail_template(
-            self,
-            send_to_address=from_address,
-            send_from_address=from_address,
-            data=data,
-            speaker=speaker,
-            talk=talk,
-        )
-
+        email_charset = mail_settings.email_charset
         message = message.encode(email_charset)
+        host = getUtility(IMailHost)
         host.send(
             message,
-            mto=from_address,
+            mto=to_address or from_address,
             mfrom=from_address,
-            subject='{0} - New talk submission'.format(site.title),
+            subject=subject,
             charset='utf-8',
+            msg_type='text/html',
         )

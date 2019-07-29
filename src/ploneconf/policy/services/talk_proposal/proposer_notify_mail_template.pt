@@ -1,0 +1,18 @@
+<div xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+     xmlns:tal="http://xml.zope.org/namespaces/tal"
+     xmlns:metal="http://xml.zope.org/namespaces/metal"
+     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+     i18n:domain="plone"
+     tal:omit-tag=""
+     tal:define="charset python:context.portal_registry.get('email_charset', 'utf-8');
+                 dummy python:request.RESPONSE.setHeader('Content-Type', 'text/html;;charset=%s' % charset)">
+    <div>
+        <p>Thank you for your talk proposal!</p>
+        <p>We will evaluate it at the end of call for speakers campaign and will contact you after our decision both if you will be accepted or not.</p>
+
+        <p>Kind regards</p>
+        <p>Plone Conference Team</p>
+        <img src="https://2019.ploneconf.org/api/img/footer.png/images/image/preview" alt="Plone Conference logo" />
+    </div>
+
+</div>
