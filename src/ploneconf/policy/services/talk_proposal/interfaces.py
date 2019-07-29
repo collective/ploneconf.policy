@@ -49,3 +49,4 @@ class ITalkProposalSchema(ITalk):
     directives.mode(room='hidden')
     directives.mode(start='hidden')
     directives.mode(end='hidden')
+    directives.mode(is_keynote='hidden')

@@ -106,6 +106,8 @@ class ITalk(model.Schema):
         klass=u'event_end',
     )
 
+    is_keynote = schema.Bool(title=u'Is keynote', required=False)
+
 
 @implementer(ITalk)
 class Talk(Item):
