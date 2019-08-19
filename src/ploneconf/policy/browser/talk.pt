@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master">
+
+    <metal:block fill-slot="content-core">
+        <div>
+            <strong>Duration: </strong><span>${context/duration}</span>
+        </div>
+        <div>
+            <strong>Level: </strong><span>${context/level}</span>
+        </div>
+        <div>
+            <strong>Audience: </strong><span tal:content="python:', '.join(getattr(context, 'audience', []))" />
+        </div>
+        <div>
+            <strong>Topic: </strong><span tal:content="python:', '.join(getattr(context, 'topic', []))" />
+        </div>
+        <div>
+            <strong>Other topics: </strong><span>${context/other_topics}</span>
+        </div>
+        <div>
+            <strong>Slides url: </strong><span>${context/slides_url}</span>
+        </div>
+        <div>
+            <strong>Slides embed: </strong><span>${context/slides_embed}</span>
+        </div>
+        <div>
+            <strong>Video embed: </strong><span>${context/video_embed}</span>
+        </div>
+        <div>
+            <strong>Room: </strong><span>${context/room}</span>
+        </div>
+        <div>
+            <strong>Start: </strong><span>${context/start}</span>
+        </div>
+        <div>
+            <strong>End: </strong><span>${context/end}</span>
+        </div>
+        <div>
+            <strong>Is keynote: </strong><span>${context/is_keynote}</span>
+        </div>
+        <div>
+            <strong>Speaker(s): </strong>
+            <ul tal:define="speakers view/get_speakers">
+                <li tal:repeat="speaker speakers">
+                    <a href="${speaker/absolute_url}">${speaker/title}</a>
+                </li>
+            </ul>
+        </div>
+    </metal:block>
+
+</html>

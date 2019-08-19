@@ -26,4 +26,13 @@
       class=".controlpanel.PloneconfControlpanel"
       layer="ploneconf.policy.interfaces.IPloneconfPolicyLayer"
       />
+  
+  <browser:page
+      for="ploneconf.policy.content.talk.ITalk"
+      name="view"
+      permission="zope2.View"
+      class=".talk.View"
+      template="talk.pt"
+      layer="ploneconf.policy.interfaces.IPloneconfPolicyLayer"
+      />
 </configure>
