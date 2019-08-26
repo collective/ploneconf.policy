@@ -11,6 +11,8 @@ from ploneconf.policy.vocabularies import TALK_TOPICS
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.interface import implementer
+from plone.app.textfield import RichText as RichTextField
+from plone.app.z3cform.widget import RichTextFieldWidget
 
 from ploneconf.policy import _
 
@@ -29,6 +31,13 @@ class ITalk(model.Schema):
         u'curiosity of attendants.',
         required=True,
     )
+
+    text = RichTextField(
+        title=_(u'Formatted description'),
+        description=u'Used to better format the description (for presentation purposes).',
+        required=False,
+    )
+    directives.widget('text', RichTextFieldWidget)
 
     duration = schema.Choice(
         title=_('Duration'),
