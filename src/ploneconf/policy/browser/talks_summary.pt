@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master">
+
+    <metal:block fill-slot="content-title">
+        <h1 class="documentFirstHeading">Talks Summary</h1>
+    <metal:block>
+    <metal:block fill-slot="content-core"
+        tal:define="talks view/talks">
+        <p>There are ${talks/actual_result_count} Talks.</p>
+        <table class="listing" id="talks">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Duration</th>
+                    <th>Speaker</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tal:row tal:repeat="talk talks">
+                    <tr tal:define="talk_obj talk/getObject">
+                        <td><a href="${talk/getURL}">${talk/Title}</a></td>
+                        <td>${talk_obj/duration}</td>
+                        <td tal:define="speakers python:view.get_speakers(talk_obj)">
+                            <tal:speakers repeat="speaker speakers">
+                                <a href="${speaker/absolute_url}">${speaker/title}</a>
+                            </tal:speakers>
+                        </td>
+                    </tr>
+                </tal:row>
+            </tbody>
+        </table>
+    </metal:block>
+
+</html>
