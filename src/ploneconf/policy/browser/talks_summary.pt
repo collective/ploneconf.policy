@@ -16,6 +16,7 @@
                     <th>Title</th>
                     <th>Duration</th>
                     <th>Speaker</th>
+                    <th>email</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,11 @@
                         <td tal:define="speakers python:view.get_speakers(talk_obj)">
                             <tal:speakers repeat="speaker speakers">
                                 <a href="${speaker/absolute_url}">${speaker/title}</a>
+                            </tal:speakers>
+                        </td>
+                        <td tal:define="speakers python:view.get_speakers(talk_obj)">
+                            <tal:speakers repeat="speaker speakers">
+                                <a href="mailto:${speaker/email}">${speaker/email}</a>
                             </tal:speakers>
                         </td>
                     </tr>

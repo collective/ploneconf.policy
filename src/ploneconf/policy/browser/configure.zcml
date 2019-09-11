@@ -39,7 +39,7 @@
    <browser:page
       for="Products.CMFCore.interfaces.ISiteRoot"
       name="talks-summary"
-      permission="zope2.View"
+      permission="cmf.ManagePortal"
       class=".talks.View"
       template="talks_summary.pt"
       layer="ploneconf.policy.interfaces.IPloneconfPolicyLayer"
