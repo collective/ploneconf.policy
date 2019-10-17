@@ -29,6 +29,7 @@ TRAINING_CLASS_ROOMS = SimpleVocabulary(
         SimpleTerm(value=u'Pistachio room', title=u'Pistachio room'),
         SimpleTerm(value=u'Relax room', title=u'Relax room'),
         SimpleTerm(value=u'10 absents room', title=u'10 absents room'),
+        SimpleTerm(value=u'Wunderkammer', title=u'Wunderkammer'),
     ]
 )
 
